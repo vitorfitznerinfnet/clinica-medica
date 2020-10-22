@@ -6,11 +6,11 @@ using Clinica.WebApp.Controllers;
 
 namespace Clinica.WebApp.Models
 {
-    public class Class
+    public class Paciente
     {
-        public void X()
-        {
-            
-        }
+        public string Nome;
+        public string Cpf;
+        public DateTime DataDeNascimento;
+        public string Email;
     }
 }

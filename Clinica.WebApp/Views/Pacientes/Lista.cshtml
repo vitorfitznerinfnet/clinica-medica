@@ -1,0 +1,16 @@
+﻿@model List<Clinica.WebApp.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Lista";
+    var listaDePacientes = Model;
+}
+
+<h1>Lista</h1>
+
+@foreach (var paciente in listaDePacientes)
+{
+    <p>
+        Nome: @paciente.Nome <br />
+        Cpf: @paciente.Cpf
+    </p>
+}
