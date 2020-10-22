@@ -1,7 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Clinica.WebApp.Models.Paciente>
 @{
-
+    var listaDePacientes = Model;
 }
-<h1>Página de consulta de pacientes</h1>
+<h1 class="corVermelha">Página de consulta de pacientes</h1>
+
+<form action="/pacientes/consulta" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Pesquisa</label>
+        <input name="q" type="text" class="form-control" aria-describedby="emailHelp">
+        <small class="form-text text-muted">Entre com o nome ou cpf do paciente</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">CPF</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var paciente in listaDePacientes)
+        {
+            <tr>
+                <td>@paciente.Cpf</td>
+                <td>@paciente.Nome</td>
+                <td>@paciente.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

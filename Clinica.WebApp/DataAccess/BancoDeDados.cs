@@ -9,9 +9,16 @@ namespace Clinica.WebApp.DataAccess
 {
     public class BancoDeDados
     {
-        public void Armazenar(List<Paciente> pacientes)
+        static List<Paciente> pacientes = new List<Paciente>();
+
+        public void Armazenar(Paciente paciente)
         {
-            File.WriteAllText("", "");
+            pacientes.Add(paciente);
+        }
+
+        public List<Paciente> BuscarPacientes()
+        {
+            return pacientes;
         }
     }
 }

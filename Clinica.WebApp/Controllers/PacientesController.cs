@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Clinica.WebApp.Models;
 using Clinica.WebApp.DataAccess;
 
@@ -11,10 +7,10 @@ namespace Clinica.WebApp.Controllers
 {
     public class PacientesController : Controller
     {
-        static List<Paciente> pacientes = new List<Paciente>();
-
         public ActionResult Lista()
         {
+            BancoDeDados bancoDeDados = new BancoDeDados();
+            var pacientes = bancoDeDados.BuscarPacientes();
             return View(pacientes);
         }
 
@@ -25,22 +21,34 @@ namespace Clinica.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastro(string nome, string cpf)
+        public ActionResult Cadastro(string nome, string cpf, string email)
         {
             Paciente paciente = new Paciente();
             paciente.Nome = nome;
             paciente.Cpf = cpf;
-
-            pacientes.Add(paciente);
+            paciente.Email = email;
 
             BancoDeDados bancoDeDados = new BancoDeDados();
-            bancoDeDados.Armazenar(pacientes);
+            bancoDeDados.Armazenar(paciente);
 
             return View();
         }
 
+        [HttpGet]
         public ActionResult Consulta()
         {
+            BancoDeDados bancoDeDados = new BancoDeDados();
+            
+            var pacientes = bancoDeDados.BuscarPacientes();
+
+            return View(pacientes);
+        }
+
+        [HttpPost]
+        public ActionResult Consulta(string q)
+        {
+            //utilizar a variavel Q para fazer a minha consulta
+
             return View();
         }
 
