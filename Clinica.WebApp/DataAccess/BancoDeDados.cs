@@ -20,5 +20,25 @@ namespace Clinica.WebApp.DataAccess
         {
             return pacientes;
         }
+
+        public List<Paciente> BuscarPacientesPeloNome(string nome)
+        {
+            if (nome == null)
+            { 
+                return pacientes;
+            }
+
+            List<Paciente> novaListaDePacientes = new List<Paciente>();
+
+            foreach (var paciente in pacientes)
+            { 
+                if (paciente.Nome.Contains(nome))
+                {
+                    novaListaDePacientes.Add(paciente);
+                }
+            }
+
+            return novaListaDePacientes;
+        }
     }
 }
